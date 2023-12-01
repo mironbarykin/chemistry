@@ -13,12 +13,13 @@
         <h1>Zufällige Elemente</h1>
         <button class="button" onclick="generateRandomElements()">Generiere Zufällige Elemente</button>
         
-        <div class="result" id="generation">
-            <!-- Display the randomly generated elements here -->
+        <div class="generation" id="generation">
+            <center><div id="loader-generation" class="loader"></div></center>
         </div>
 
         <button class="button" id="redox-button" onclick="redox()" disabled><u>Redox</u>reaktion</button>
         <div class="result" id="redox">
+            <center><div id="loader-redox" class="loader"></div></center>
         </div>
         <button class="button" id="salz-button" onclick="salz()" disabled><u>Salz</u>bildung</button>
         <div class="result" id="salz">

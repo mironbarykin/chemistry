@@ -9,25 +9,27 @@ function nok(n, m) {
 var previous_generations = [];
 
 function generateRandomElements() {
-    // Fetch random elements from the server
+    document.getElementById('loader-generation').style.display = 'block';
+
     fetch('/generate', {
         method: 'GET',
     })
     .then(response => response.json())
     .then(data => {
+        document.getElementById('loader-generation').style.display = 'none';
 
+        const result_field = document.getElementById('generation');
+        
         document.getElementById('redox-button').disabled = false
         document.getElementById('salz-button').disabled = false
 
-        document.getElementById('redox').innerHTML = ''
+        document.getElementById('redox').innerHTML = '<center><div id="loader-redox" class="loader"></div></center>'
         document.getElementById('salz').innerHTML = ''
 
-        // todo: special function for adding new generation
         previous_generations.push(data);
-    
-        // todo: special function for displaying it on the screen
-        const resultDiv = document.getElementById('generation');
-        resultDiv.innerHTML = `
+
+        result_field.innerHTML = `
+            <center><div id="loader-generation" class="loader"></div></center>
             <div class="square">
                 <div class="element metall">
                     <div class="info">
@@ -46,15 +48,16 @@ function generateRandomElements() {
             </div>
         `;
     })
-    .catch(error => console.error('Error:', error));
-}
-
-function update(data) {
-    
+    .catch(error => {
+        console.error(error)
+    });
 }
 
 function redox() {
     document.getElementById('redox-button').disabled = true
+
+    document.getElementById('loader-redox').style.display = 'block';
+
     const result_field = document.getElementById('redox');
     
     fetch('/result', {
@@ -66,9 +69,10 @@ function redox() {
     })
     .then(response => response.json())
     .then(data => {
+        document.getElementById('loader-redox').style.display = '';
         result_field.innerHTML = data.content
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => console.error(error));
 }
 
 function salz() {

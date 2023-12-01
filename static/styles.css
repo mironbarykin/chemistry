@@ -97,25 +97,25 @@ body {
 
 .element .group,
 .element .name,
-.element .electrons {
+.element .electrons, .result {
   font-size: 5rem;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 450px) {
   /* For phones, reduce font size */
   .element .group,
   .element .name,
-  .element .electrons {
-    font-size: 1.5rem;
+  .element .electrons, .result {
+    font-size: 1.4rem;
   }
 }
 
-@media only screen and (min-width: 425px) and (max-width: 800px) {
+@media only screen and (min-width: 450px) and (max-width: 800px) {
   /* For laptops, maintain font size */
   .element .group,
   .element .name,
-  .element .electrons {
-    font-size: 2.5rem;
+  .element .electrons, .result {
+    font-size: 2.4rem;
   }
 }
 
@@ -123,7 +123,7 @@ body {
   /* For larger screens (including iPads), increase font size slightly */
   .element .group,
   .element .name,
-  .element .electrons {
+  .element .electrons, .result {
     font-size: 4rem;
     }
 }
@@ -144,4 +144,19 @@ footer {
     margin-top: 50px;
     font-style: italic;
     font-size: small;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
