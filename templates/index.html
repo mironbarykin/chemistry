@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Flask Web App</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Zufällige Elemente</h1>
+        <button class="button" onclick="generateRandomElements()">Generiere Zufällige Elemente</button>
+        
+        <div class="result" id="generation">
+            <!-- Display the randomly generated elements here -->
+        </div>
+
+        <button class="button" id="redox-button" onclick="redox()" disabled><u>Redox</u>reaktion</button>
+        <div class="result" id="redox">
+        </div>
+        <button class="button" id="salz-button" onclick="salz()" disabled><u>Salz</u>bildung</button>
+        <div class="result" id="salz">
+        </div>
+
+        <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+        <footer>ein Problem melden auf barykinmiron@gmail.com</footer>
+    </div>
+
+</body>
+
+</html>
