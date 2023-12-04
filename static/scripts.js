@@ -33,17 +33,17 @@ function generateRandomElements() {
             <div class="square">
                 <div class="element metall">
                     <div class="info">
-                        <span class="group">${data.metall.edelgaskonfiguration}</span>
-                        <span class="name">${data.metall.kurz}</span>
+                        <span class="group">${data.metall.deficiency}</span>
+                        <span class="name">${data.metall.symbol}</span>
                     </div>
-                    <span class="electrons">${data.metall.elektronen}</span>
+                    <span class="electrons">${data.metall.electrons}</span>
                 </div>
                 <div class="element nichtmetall">
                     <div class="info">
-                        <span class="group">${8 - data.nichtmetall.edelgaskonfiguration}</span>
-                        <span class="name">${data.nichtmetall.kurz}</span>
+                        <span class="group">${8 - data.nichtmetall.deficiency}</span>
+                        <span class="name">${data.nichtmetall.symbol}</span>
                     </div>
-                    <span class="electrons">${data.nichtmetall.elektronen}</span>
+                    <span class="electrons">${data.nichtmetall.electrons}</span>
                 </div>
             </div>
         `;
@@ -87,23 +87,23 @@ function salz() {
         return
     }
 
-    if (metall.edelgaskonfiguration == nichtmetall.edelgaskonfiguration) {
+    if (metall.deficiency == nichtmetall.deficiency) {
         metall_index = ''
         nichtmetall_index = ''
     } else {
-        if (metall.edelgaskonfiguration == 1) {
+        if (metall.deficiency == 1) {
             nichtmetall_index = ''
         } else {
-            nichtmetall_index = metall.edelgaskonfiguration
+            nichtmetall_index = metall.deficiency
         }
         
-        if (nichtmetall.edelgaskonfiguration == 1) {
+        if (nichtmetall.deficiency == 1) {
             metall_index = ''
         } else {
-            metall_index = nichtmetall.edelgaskonfiguration
+            metall_index = nichtmetall.deficiency
         }
     }
 
-    result_field.innerHTML = `${metall.voll}${nichtmetall.salz} (${metall.kurz}<span class="down">${metall_index}</span>${nichtmetall.kurz}<span class="down">${nichtmetall_index}</span>)`
+    result_field.innerHTML = `${metall.name}${nichtmetall.salt} (${metall.symbol}<span class="down">${metall_index}</span>${nichtmetall.symbol}<span class="down">${nichtmetall_index}</span>)`
 
 }
