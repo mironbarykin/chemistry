@@ -96,7 +96,8 @@ body {
 
 .element .group,
 .element .name,
-.element .electrons, .result {
+.element .electrons, 
+.result, select {
   font-size: 5rem;
 }
 
@@ -104,7 +105,8 @@ body {
   /* For phones, reduce font size */
   .element .group,
   .element .name,
-  .element .electrons, .result {
+  .element .electrons, 
+  .result, select {
     font-size: 1.4rem;
   }
 }
@@ -113,7 +115,8 @@ body {
   /* For laptops, maintain font size */
   .element .group,
   .element .name,
-  .element .electrons, .result {
+  .element .electrons, 
+  .result, select {
     font-size: 2.4rem;
   }
 }
@@ -122,7 +125,8 @@ body {
   /* For larger screens (including iPads), increase font size slightly */
   .element .group,
   .element .name,
-  .element .electrons, .result {
+  .element .electrons, 
+  .result, select {
     font-size: 4rem;
     }
 }
@@ -175,4 +179,10 @@ nav .nav-button {
 
 .container.disabled {
   display: none;
+}
+
+select {
+  padding: 10px;
+  background-color: #007bff00;
+  border: none;
 }

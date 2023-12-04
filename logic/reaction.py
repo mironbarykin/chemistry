@@ -26,9 +26,6 @@ class RedOx(Reaction):
         reduktion = Reaction([Display(self.nonmetal, after_down=self.nonmetal.molecule), electrons_left], 
                              [Display(self.nonmetal, before=self.nonmetal.molecule, after_up_number=self.nonmetal.deficiency, after_up_symbol='&#8722')])
 
-
-        print(oxidation.left, oxidation.right, '\n', reduktion.left, reduktion.right)
-
         if electrons_left.before != electrons_right.before:
             oxidation.left[0].before *= electrons_left.before
             oxidation.right[0].before *= electrons_left.before

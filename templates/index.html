@@ -10,9 +10,9 @@
 
 <body>
     <nav>
-        <button class="button nav-button" onclick="showContainer('random')">Zufällige</button>
-        <button class="button nav-button" onclick="showContainer('detailed')">Ausgewählte</button>
-        <button class="button nav-button" onclick="showContainer('help')">Hilfe</button>
+        <button class="button nav-button" id='navRandomButton' onclick="showContainer('random', 'navRandomButton')" disabled>Zufällige</button>
+        <button class="button nav-button" id='navChosenButton' onclick="showContainer('chosen', 'navChosenButton')">Ausgewählte</button>
+        <button class="button nav-button" id='navHelpButton' onclick="showContainer('help', 'navHelpButton')">Hilfe</button>
     </nav>
     <div class="container" id="random">
         <h1>Zufällige Elemente</h1>
@@ -30,8 +30,27 @@
         <div class="result" id="salz">
         </div>
     </div>
-    <div class="container disabled" id="detailed">
-        <h1>!!!</h1>
+    <div class="container disabled" id="chosen">
+        <h1>Ausgewählte Elemente</h1>
+        <div class="square">
+            <div class="element metall">
+                <div class="info">
+                    <select id="nichtmetallSelect">
+                        <option>__</option>
+                    </select>
+                </div>
+            </div>
+            <div class="element nichtmetall">
+                <div class="info">
+                    <select id="metallSelect">
+                        <option>__</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <button class="button" id="redox-chosen-button" onclick="redox_chosen()"><u>Redox</u>reaktion</button>
+        <div class="result" id="redox-chosen">
+        </div>
     </div>
     <div class="container disabled" id="help">
         <h1>Hilfe!</h1>

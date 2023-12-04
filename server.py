@@ -19,8 +19,10 @@ def generate():
 @app.route('/result', methods=['GET', 'POST'])
 def result():
     data = request.json
-
-    redox = RedOx(metal=Element(**data['metall']), nonmetal=Element(**data['nichtmetall']))
+    try:
+        redox = RedOx(metal=Element(**data['metall']), nonmetal=Element(**data['nichtmetall']))
+    except TypeError:
+        return {'content': 'Bitte treffen Sie Ihre Wahl!'}
     return jsonify({'content': ' <br> '.join([reaction.display() for reaction in redox.generate()])})
 
 if __name__ == '__main__':

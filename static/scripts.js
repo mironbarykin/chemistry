@@ -99,10 +99,88 @@ function salz() {
     result_field.innerHTML = `${metall.name}${nichtmetall.salt} (${metall.symbol}<span class="down">${metall_index}</span>${nichtmetall.symbol}<span class="down">${nichtmetall_index}</span>)`
 }
 
-function showContainer(containerId) {
+function showContainer(containerId, buttonId) {
     document.querySelectorAll('.container').forEach(container => {
         container.classList.add('disabled');
     });
 
     document.getElementById(containerId).classList.remove('disabled');
+
+    document.getElementById(buttonId).disabled = true;
+
+    document.querySelectorAll('.nav-button').forEach(button => {
+        if (button.id !== buttonId) {
+            button.disabled = false;
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    fetch('/static/elements.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            const { metall, nichtmetall } = parseCSV(csvData);
+
+            // Populate metall dropdown
+            populateDropdown('metallSelect', metall);
+
+            // Populate nichtmetall dropdown
+            populateDropdown('nichtmetallSelect', nichtmetall);
+        });
+});
+
+function parseCSV(csvData) {
+    const lines = csvData.split('\n');
+    const headers = lines[0].split(',');
+
+    const metall = [];
+    const nichtmetall = [];
+
+    for (let i = 1; i < lines.length; i++) {
+        const values = lines[i].split(',');
+
+        if (values[4] == 'M') {
+            metall.push(values);
+        } else {
+            nichtmetall.push(values);
+        }
+    }
+
+    return { metall, nichtmetall };
+}
+
+function populateDropdown(id, options) {
+    const dropdown = document.getElementById(id);
+
+    options.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option;
+        optionElement.textContent = option[0];
+        dropdown.appendChild(optionElement);
+    });
+
+    // Add event listener to update selectedMetall or selectedNichtmetall on change
+
+}
+
+function redox_chosen() {
+    const selectedMetall = document.getElementById('metallSelect').value.split(',');
+    const selectedNichtmetall = document.getElementById('nichtmetallSelect').value.split(',');
+
+    const result_field = document.getElementById('redox-chosen');
+    
+    fetch('/result', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 'metall': { 'symbol': selectedMetall[0], 'name': selectedMetall[1], 'deficiency': selectedMetall[2], 'electrons': selectedMetall[3], 'state': selectedMetall[4], 'salt': selectedMetall[5], 'molecule': selectedMetall[6], }, 
+            'nichtmetall': { 'symbol': selectedNichtmetall[0], 'name': selectedNichtmetall[1], 'deficiency': selectedNichtmetall[2], 'electrons': selectedNichtmetall[3], 'state': selectedNichtmetall[4], 'salt': selectedNichtmetall[5], 'molecule': selectedNichtmetall[6], } 
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        result_field.innerHTML = data.content
+    })
+    .catch(error => console.error(error));
 }
