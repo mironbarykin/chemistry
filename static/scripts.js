@@ -1,11 +1,3 @@
-function gcd(n, m) {
-    return m == 0 ? n : gcd(m, n % m);
-}
-  
-function nok(n, m) {
-    return n * m / gcd(n, m);
-}
-
 var previous_generations = [];
 
 function generateRandomElements() {
@@ -105,5 +97,12 @@ function salz() {
     }
 
     result_field.innerHTML = `${metall.name}${nichtmetall.salt} (${metall.symbol}<span class="down">${metall_index}</span>${nichtmetall.symbol}<span class="down">${nichtmetall_index}</span>)`
+}
 
+function showContainer(containerId) {
+    document.querySelectorAll('.container').forEach(container => {
+        container.classList.add('disabled');
+    });
+
+    document.getElementById(containerId).classList.remove('disabled');
 }

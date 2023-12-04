@@ -3,7 +3,7 @@ body {
   background-color: #f4f4f4;
 }
 
-.container {
+.container, nav {
   max-width: 800px;
   margin: 50px auto;
   padding: 20px;
@@ -13,7 +13,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-  
 
 .square {
   display: flex;
@@ -141,7 +140,10 @@ body {
 }
 
 footer {
-    margin-top: 50px;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 800px;
+
     font-style: italic;
     font-size: small;
 }
@@ -159,4 +161,18 @@ footer {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+nav {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+nav .nav-button {
+  flex: 1;
+  margin: 10px;
+}
+
+.container.disabled {
+  display: none;
 }

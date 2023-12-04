@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Flask Web App</title>
+    <title>Redoxreaktion + Salzbildung</title>
 </head>
 
 <body>
-    <div class="container">
+    <nav>
+        <button class="button nav-button" onclick="showContainer('random')">Zufällige</button>
+        <button class="button nav-button" onclick="showContainer('detailed')">Ausgewählte</button>
+        <button class="button nav-button" onclick="showContainer('help')">Hilfe</button>
+    </nav>
+    <div class="container" id="random">
         <h1>Zufällige Elemente</h1>
         <button class="button" onclick="generateRandomElements()">Generiere Zufällige Elemente</button>
         
@@ -24,11 +29,15 @@
         <button class="button" id="salz-button" onclick="salz()" disabled><u>Salz</u>bildung</button>
         <div class="result" id="salz">
         </div>
-
-        <script src="{{ url_for('static', filename='scripts.js') }}"></script>
-        <footer>ein Problem melden auf barykinmiron@gmail.com</footer>
     </div>
-
+    <div class="container disabled" id="detailed">
+        <h1>!!!</h1>
+    </div>
+    <div class="container disabled" id="help">
+        <h1>Hilfe!</h1>
+    </div>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    <footer>ein Problem melden auf <a href="mailto:barykinmiron@gmail.com">barykinmiron@gmail.com</a></footer>
 </body>
 
 </html>
